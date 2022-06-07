@@ -1,0 +1,85 @@
+
+<style>
+    .toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      font-size: larger;
+      display: flex;
+      align-items: center;    
+      background-color: #1935d2;
+      color: white;
+      font-weight: 600;
+    }
+  </style>
+  
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">    
+    <span>Top Sales</span>
+  </div>
+
+  <form [formGroup]="loginPage" (ngSubmit)="onSubmitUserDetails(detailsForm)">
+
+    <label>Full Name</label>
+    <input type="text" class="form-control" id="fullname" placeholder="Jane Doe" formControlName="fullnameControl"
+     [ngClass]="{
+            'is-valid': !detailsForm.get('fullnameControl')?.hasError('required'),
+            'is-invalid': isSubmitted &&detailsForm.get('fullnameControl')?.hasError('required')
+            }">
+    <div *ngIf="detailsForm.get('fullnameControl')?.hasError('required')" class="invalid-feedback">Please enter name</div>
+
+    <label>ID Number</label>
+    <input type="text" class="form-control" id="idnumber" formControlName="idnumberControl" 
+     [ngClass]="{
+                'is-valid': !detailsForm.get('idnumberControl')?.hasError('required') && !detailsForm.get('idnumberControl')?.hasError('invalidsaid'),
+                'is-invalid': isSubmitted && (detailsForm.get('idnumberControl')?.hasError('required') || detailsForm.get('idnumberControl')?.hasError('invalidsaid'))
+            }">
+    <div *ngIf="isSubmitted && detailsForm.get('idnumberControl')?.hasError('required')" class="invalid-feedback">Please enter id number</div>
+    <div *ngIf="isSubmitted &&
+         !detailsForm.get('idnumberControl')?.hasError('required') &&
+         detailsForm.get('idnumberControl')?.hasError('invalidsaid')" class="invalid-feedback">Entered id number is not valid</div>
+
+    <label>OTP</label>
+    <input type="text" placeholder="e.g. 123456789" class="form-control" id="otp" formControlName="otpControl"
+        [ngClass]="{
+                'is-valid': !detailsForm.get('otpControl')?.hasError('required'),
+                'is-invalid': isSubmitted && detailsForm.get('otpControl')?.hasError('required')
+                }"> 
+    <div *ngIf="isSubmitted && detailsForm.get('otpControl')?.hasError('required')" class="invalid-feedback">Please enter otp</div>
+<br>
+<button type="submit" class="btn btn-primary">Next</button>
+
+<div class="disclaimerthing">
+    By clicking next, I agree that the above information is accurate.
+</div>
+</form>
+       
+<!-- <div class="form-container">
+    <form [formGroup]="form">
+      <label for="fullName" align = 'center'>Full Name</label>
+      <input [ngClass]="{'error': control.fullName.errors?.y && submitted}" [formControlName]="'fullName'"
+        id="fullName" type="text" placeholder="Full Name" >
+      <div class="err" *ngIf="control.fullName.errors?.required && submitted">Please enter name</div>
+  
+      <label for="idNumber" align = 'center'>ID Number</label>
+      <input
+        [ngClass]="{'error': (control.idNumber.errors?.pattern || control.idNumber.errors?.required ) && submitted}"
+        [formControlName]="'idNumber'" id="idNumber" placeholder="ID Number">
+      <div class="err" *ngIf="control.idNumber.errors?.pattern && submitted">Id number must be 13 digits long</div>
+      <div class="err" *ngIf="control.idNumber.errors?.required && submitted">Please enter ID number</div>
+  
+      <label for="otp" align = 'center'>OTP</label>
+      <input [ngClass]="{'error': control.otp.errors?.required && submitted}" [formControlName]="'otp'" id="otp"
+        type="number" placeholder="OTP">
+      <div class="err" *ngIf="control.otp.errors?.required && submitted">Please enter OTP</div>
+    </form>
+    <div class="submit-button" (click)="submit()">
+      Next
+    </div>
+    <div class="text">
+      By clicking next, I agree that the above information is
+      accurate
+    </div>
+  </div> -->

@@ -1,0 +1,30 @@
+.submit-button{
+    width: fit-content;
+    background-color: green;
+    color: white;
+    display: grid;
+    place-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    form{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        input{
+            width: 10%;
+        }
+    }
+}
+.err{
+    color: red;
+}
+
+.error{
+    border: 1px solid red;
+}
