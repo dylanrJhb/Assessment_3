@@ -1,0 +1,21 @@
+<div class="toolbar" role="banner">    
+    <span>Top Sales</span>
+  </div>
+
+  <div class="form-container">
+      <form [formGroup]="form">
+        <h1>Enter One-Time Pin</h1>
+        <label for="OTP">OTP*</label>
+        <br>
+        <input 
+        [ngClass]="{'error': control.OTP.errors?.required && submitted}" 
+        [formControlName]="'OTP'"
+          id="OTP" type="text">
+        <div class="err" *ngIf="control.OTP.errors?.required && submitted"></div>
+      </form>
+       
+      <div class="submit-button" (click)="submit()">
+        Send
+      </div>
+  
+  </div>
